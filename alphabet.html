@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Alphabet Keyboard</title>
+</head>
+<body>
+<!--<input type="button" class="alpha" name="a" value="a">-->
+<input id="createKeyboard" type="button" class="setup" name="setup" value="Enter Keyboard" onclick="createKeyboard()">
+<span id="keyboard"></span>
+
+<script type="text/javascript">
+//TO DO: 
+// 1. refactor by putting all js into another file
+// 2. run locally
+// 3. deploy to cloud
+// 4. update/add a feature
+// 5. run locally (Why not just re-deploy? Faster feedback than deploying)
+// 6. re-deploy
+// 7. make pretty
+// 8. redeploy
+
+
+	function createKeyboard() {
+		var myAlphabetTop = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+			myAlphabetMiddle = ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
+			myAlphabetBottom = ["z", "x", "c", "v", "b", "n", "m"],
+			keyboard = document.getElementById("keyboard");
+
+			makeAlphaRow(myAlphabetTop, keyboard);
+			makeAlphaRow(myAlphabetMiddle, keyboard);
+			makeAlphaRow(myAlphabetBottom, keyboard);
+		    makeShiftKey(keyboard);
+
+		// hide "Create Keyboard" button
+		   var createKeyboardBtn = document.getElementById("createKeyboard");
+		    createKeyboardBtn.type = "hidden";
+		
+	}
+
+	function makeAlphaRow(myAlphaKeys, keyboard) {
+		for (letter of myAlphaKeys) {
+			var newKey = document.createElement("input"),
+		    	node = document.createTextNode(letter);
+
+		    newKey.appendChild(node);
+		    newKey.type = "button";
+		    newKey.className = "alpha";
+		    newKey.name = letter;
+		    newKey.value = letter;
+
+		    keyboard.appendChild(newKey);
+
+		}
+		keyboard.appendChild(document.createElement("br"));
+	}
+
+	function makeShiftKey(keyboard) {
+		var shiftKey = document.createElement("input"),
+		   shiftNode = document.createTextNode("shift");
+
+		   shiftKey.type = "button";
+		   shiftKey.className = "helpers";
+		   shiftKey.name = "shift";
+		   shiftKey.value = "shift";
+		   shiftKey.id = "shift";
+		   shiftKey.setAttribute("isupper", false);
+		   shiftKey.setAttribute("onclick", "toUpper();");
+
+		   keyboard.appendChild(document.createElement("br"));
+		   keyboard.appendChild(shiftKey);
+	}
+
+	function toUpper() {
+		console.log("Shift key pressed!")
+		var alphaKeyElements = document.getElementsByClassName("alpha");
+		for (key of alphaKeyElements) {
+			if(key.value != key.value.toUpperCase()) { 
+				key.value = key.value.toUpperCase(); 
+				document.getElementById("shift").setAttribute("isupper", true);
+			} else { 
+				key.value = key.value.toLowerCase();
+				document.getElementById("shift").setAttribute("isupper", false);
+			}
+		}
+
+	}
+	
+</script>
+
+</body>
+</html>
