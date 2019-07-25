@@ -12,12 +12,10 @@
 //TO DO: 
 // 1. refactor by putting all js into another file
 // 2. run locally
-// 3. deploy to cloud
-// 4. update/add a feature
-// 5. run locally (Why not just re-deploy? Faster feedback than deploying)
-// 6. re-deploy
-// 7. make pretty
-// 8. redeploy
+// 3. update/add a feature
+// 4. run locally (Why not just re-deploy? Faster feedback than deploying)
+// 5. make pretty
+
 
 
 	function createKeyboard() {
@@ -47,11 +45,19 @@
 		    newKey.className = "alpha";
 		    newKey.name = letter;
 		    newKey.value = letter;
+		    newKey.setAttribute("audiotype", "name");
+		    var playAudio = "playAudio(\"" + letter + "\");";
+		    newKey.setAttribute("onclick", playAudio);
 
 		    keyboard.appendChild(newKey);
 
 		}
 		keyboard.appendChild(document.createElement("br"));
+	}
+
+	function playAudio(letter) {
+		var audio = new Audio('./myKeyboard/audio/letters/name/' + letter + '.m4a');
+		audio.play();
 	}
 
 	function makeShiftKey(keyboard) {
