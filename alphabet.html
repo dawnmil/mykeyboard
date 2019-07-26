@@ -2,21 +2,32 @@
 <html>
 <head>
 	<title>My Alphabet Keyboard</title>
+	<!-- Bootstrap: https://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
+	<!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"-->
+
+	<!-- custom CSS style -->
+	<!--link rel="stylesheet" type="text/css" href="myStyle.css" media="screen" /-->
 </head>
 <body>
-<!--<input type="button" class="alpha" name="a" value="a">-->
-<input id="createKeyboard" type="button" class="setup" name="setup" value="Enter Keyboard" onclick="createKeyboard()">
-<span id="keyboard"></span>
+<div id="wrapper">
+	<div id="myKeyboard">
+		<input id="createKeyboard" type="button" class="setup" name="setup" value="Enter Keyboard" onclick="createKeyboard()">
+		<span id="keyboard"></span>
+	</div>
+</div>
 
 <script type="text/javascript">
 //TO DO: 
-// 1. refactor by putting all js into another file
-// 2. run locally
-// 3. update/add a feature
-// 4. run locally (Why not just re-deploy? Faster feedback than deploying)
-// 5. make pretty
+// 1. Fork project from git
+// 2. git clone on local
+// 3. Open in IDE
+// 4. Open this file in Browser to test locally
+// 5. Refactor: Put all js into another file
+// 6. Change/Add a feature/make pretty
+// 7. Test changes locally: save and refresh browser
+// 8. push changes to your remote repo
 
-
+var audioDirectory = './audio/letters/name/';
 
 	function createKeyboard() {
 		var myAlphabetTop = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
@@ -37,26 +48,27 @@
 
 	function makeAlphaRow(myAlphaKeys, keyboard) {
 		for (letter of myAlphaKeys) {
-			var newKey = document.createElement("input"),
+			var newButton = document.createElement("input"),
 		    	node = document.createTextNode(letter);
 
-		    newKey.appendChild(node);
-		    newKey.type = "button";
-		    newKey.className = "alpha";
-		    newKey.name = letter;
-		    newKey.value = letter;
-		    newKey.setAttribute("audiotype", "name");
+		    newButton.appendChild(node);
+		    newButton.type = "button";
+		    newButton.className = "alpha";
+		    newButton.name = letter;
+		    newButton.value = letter;
+		    newButton.setAttribute("audiotype", "name");
 		    var playAudio = "playAudio(\"" + letter + "\");";
-		    newKey.setAttribute("onclick", playAudio);
+		    newButton.setAttribute("onclick", playAudio);
 
-		    keyboard.appendChild(newKey);
-
+		    keyboard.appendChild(newButton);
 		}
 		keyboard.appendChild(document.createElement("br"));
 	}
 
 	function playAudio(letter) {
-		var audio = new Audio('./myKeyboard/audio/letters/name/' + letter + '.m4a');
+		console.log("retrieve audio");
+		console.log()
+		var audio = new Audio(audioDirectory + letter + '.m4a');
 		audio.play();
 	}
 
