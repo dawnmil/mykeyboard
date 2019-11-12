@@ -1,2 +1,4 @@
-# myKeyboard
-This is a passion project, focus of the application is on educating my son. The kicker is the benefits it brings me as I am using this fun application to practice HTML5, CSS, JavaScript, and to deploy to AWS public cloud for the first time. All of the code in this application is custom by me.
+# mykeyboard
+This is a passion project built with several benefits in mind: practicing HTML5, CSS, and JavaScript; creating a tool to educate the alphabet to my children; and for demoing at Girls Who Code Summer Program 2019 in Wilmington, DE. 
+
+All of the code and media in this application is custom by Dawn Milnamow.
